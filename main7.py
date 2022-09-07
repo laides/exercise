@@ -7,6 +7,7 @@ import re
 class Test_1():
     url_part1 = 'https://api.chucknorris.io/jokes/'
     url_part2 = 'random'
+    # why do you need 2 parts?
     api_url = url_part1 + url_part2
 
     def send_request(self):
@@ -29,7 +30,7 @@ class Test_1():
         text = self.send_request()
         if text :
             json_text = json.loads(text)
-            print("\nChecking fields , request output:", json_text)
+            print("\nChecking fields , request output:", json_text)           
             categories = json_text["categories"]
             created_at = json_text["created_at"]
             icon_url = json_text["icon_url"]
@@ -41,6 +42,7 @@ class Test_1():
             if not value :
                 print("\nTest failed , value field should not be empty")
             else:
+                #why defining a new function if you could test it in line 36
                 test_result = self.verify_icon_url(icon_url)
                 if test_result is True:
                     test_result = self.verify_id_and_url(id,url)
@@ -119,6 +121,7 @@ class Test_1():
         text = self.send_request()
         if text :
             json_text = json.loads(text)
+            # you are using id1 in this function, while you used id variable for the same purpose in another function.
             id1 = json_text["id"]
             value1 = json_text["value"]
 
